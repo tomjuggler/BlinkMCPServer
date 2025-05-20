@@ -1,5 +1,5 @@
 # FastMCP LED Control Server
-- built using Aider
+- built using [Aider](https://aider.chat)
 ## Requirements
 - Python 3.10+
 - Arduino Uno with LED connected to `LED_BUILTIN`
