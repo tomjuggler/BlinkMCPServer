@@ -11,7 +11,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 mcp = FastMCP("BlinkLEDServer")
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
 
 @mcp.tool(name="blink-led")
 def control_led(led_state: Literal["on", "off"]) -> str:

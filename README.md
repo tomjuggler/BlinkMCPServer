@@ -1,5 +1,5 @@
 # FastMCP LED Control Server
-
+- built using Aider
 ## Requirements
 - Python 3.10+
 - Arduino Uno with LED connected to `LED_BUILTIN`
@@ -19,8 +19,8 @@ sudo usermod -a -G dialout $USER  # Serial port access
 sudo reboot  # Apply group changes
 ```
 
-## Configuration
-Create `cline_mcp_settings.json`:
+## Client configuration (eg. Cline)
+Edit `cline_mcp_settings.json`:
 ```json
 {
   "mcpServers": {
@@ -55,8 +55,8 @@ Server response: LED is off
 ```
 
 ## Troubleshooting
-- Ensure Arduino is connected to `/dev/ttyACM1`
-- Verify serial port permissions with `ls -l /dev/ttyACM1`
+- Ensure Arduino is connected to `/dev/ttyACM0` (or your port)
+- Verify serial port permissions with `ls -l /dev/ttyACM0`
 - Check Arduino IDE → Tools → Port matches configured port
 
 ## Key Features
