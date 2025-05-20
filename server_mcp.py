@@ -1,5 +1,7 @@
 import logging
 from fastmcp import FastMCP
+import serial
+from typing import Literal
 
 # Configure logging
 logging.basicConfig(
@@ -8,22 +10,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-mcp = FastMCP("HelloWorldServer")
+mcp = FastMCP("BlinkLEDServer")
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 
-@mcp.tool(name="hello-world")
-def hello_world(name: str) -> str:
-    """Greet a user by name.
-    
+@mcp.tool(name="blink-led")
+def control_led(led_state: Literal["on", "off"]) -> str:
+    """Control the LED state.
+     
     Args:
-        name: The name to greet
+        led_state: Desired LED state (on/off)
         
     Returns:
-        A personalized greeting message
+        Current LED status confirmation
     """
-    logger.info(f"Received hello request for name: {name}")
-    if not name:
-        raise ValueError("Name cannot be empty")
-    return f"Hello, {name}! Welcome to FastMCP!"
+    logger.info(f"Setting LED to {led_state}")
+    ser.write(b'1' if led_state == "on" else b'0')
+    response = ser.readline().decode().strip()
+    return f"LED is {response}"
 
 if __name__ == "__main__":
     try:
