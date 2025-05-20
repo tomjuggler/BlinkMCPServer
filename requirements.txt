@@ -1,0 +1,11 @@
+# Core dependencies
+fastmcp>=0.4.2  # MCP framework
+pyserial>=3.5    # Serial communication
+
+# Type support (backwards compatibility)
+typing_extensions>=4.0  # For Literal type in older Python versions
+
+# System requirements:
+# 1. Serial port access: sudo usermod -a -G dialout $USER
+# 2. Reboot after group changes
+# 3. Arduino connected to /dev/ttyACM0
